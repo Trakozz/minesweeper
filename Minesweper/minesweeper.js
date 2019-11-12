@@ -13,8 +13,22 @@ function generateGrid() {
         for(let j = 0; j < 10; j++){
             cell = row.insertCell(j);
 
+            //check right click
+              cell.addEventListener('contextmenu', function(ev) {
+                  ev.preventDefault();
+
+                  var BombIcon = document.createElement("i");
+                  BombIcon.setAttribute("class", "fas fa-flag");
+                  grid.rows[i].cells[j].appendChild(BombIcon);
+                  alert('success!');
+
+                  return false;
+              }, false);
+
+
             cell.onclick = function(){
                 checkClickedCell(this);
+
             }
         }
     }
@@ -22,11 +36,13 @@ function generateGrid() {
     addMines(nbBombTot);
 }
 
+
 function addMines(totBomb){
 
     for(let i = 0; i < 10; i++){
         for(let j = 0; j < 10; j++){
-            grid.rows[i].cells[j].setAttribute("bomb", "false");
+          grid.rows[i].cells[j].setAttribute("bomb", "false");
+          //grid.rows[i].cells[j].setAttribute("oncontextmenu", "false");
         }
     }
     //add the exact amount of bombs requested
@@ -57,6 +73,7 @@ function revealBombs(){
 
 
 function checkClickedCell(cell){
+
     //check if the cell is a bomb
     if (cell.getAttribute("bomb") == "true"){
         revealBombs();
@@ -98,6 +115,7 @@ function checkClickedCell(cell){
     }
     checkWin();
 }
+
 
 
 function checkWin(){
