@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>PREMIERS PAS AVEC BRACKETS</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>
+        <div id="playButton">PLAY NOW</div>
+        
+        <h1>MINESWEEPER</h1>   
+        
+        <div class="gridContainer">
+            
+            <table id="grid">
+            </table>
+        </div>
+        <div class="buttonsContainer">
+
+            <button id="button1" 
+                    onclick="generateGrid();">New Grid
+            </button>
+
+            <button id="button2"
+                    onclick="revealBombs();">Reveal Bombs
+            </button>
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha256-fIkQKQryItPqpaWZbtwG25Jp2p5ujqo/NwJrfqAB+Qk=" crossorigin="anonymous"></script>
+        <script src='minesweeper.js'></script>
+        <script src='index.js'></script>
+        
+    </body>
+
+</html>
