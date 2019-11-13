@@ -17,11 +17,18 @@ function generateGrid() {
               cell.addEventListener('contextmenu', function(ev) {
                   ev.preventDefault();
 
-                  var BombIcon = document.createElement("i");
-                  BombIcon.setAttribute("class", "fas fa-flag");
-                  grid.rows[i].cells[j].appendChild(BombIcon);
-                  alert('success!');
-
+                  var flagIcon = document.createElement("i");
+                  flagIcon.setAttribute("class", "fas fa-flag");
+                  //if the cell is empty, display a flag
+                  if(!grid.rows[i].cells[j].hasChildNodes()){
+                    grid.rows[i].cells[j].appendChild(flagIcon);
+                    grid.rows[i].cells[j].setAttribute("flag", "true");
+                  }else{
+                    //if the cell already has a flag, remove it
+                    if(grid.rows[i].cells[j].getAttribute("flag") == "true"){
+                      grid.rows[i].cells[j].childNodes[0].remove();
+                    }
+                  }
                   return false;
               }, false);
 
