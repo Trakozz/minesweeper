@@ -13,8 +13,29 @@ function generateGrid() {
         for(let j = 0; j < 10; j++){
             cell = row.insertCell(j);
 
+            //check right click
+              cell.addEventListener('contextmenu', function(ev) {
+                  ev.preventDefault();
+
+                  var flagIcon = document.createElement("i");
+                  flagIcon.setAttribute("class", "fas fa-flag");
+                  //if the cell is empty, display a flag
+                  if(!grid.rows[i].cells[j].hasChildNodes()){
+                    grid.rows[i].cells[j].appendChild(flagIcon);
+                    grid.rows[i].cells[j].setAttribute("flag", "true");
+                  }else{
+                    //if the cell already has a flag, remove it
+                    if(grid.rows[i].cells[j].getAttribute("flag") == "true"){
+                      grid.rows[i].cells[j].childNodes[0].remove();
+                    }
+                  }
+                  return false;
+              }, false);
+
+
             cell.onclick = function(){
                 checkClickedCell(this);
+
             }
         }
     }
@@ -22,11 +43,13 @@ function generateGrid() {
     addMines(nbBombTot);
 }
 
+
 function addMines(totBomb){
 
     for(let i = 0; i < 10; i++){
         for(let j = 0; j < 10; j++){
-            grid.rows[i].cells[j].setAttribute("bomb", "false");
+          grid.rows[i].cells[j].setAttribute("bomb", "false");
+          //grid.rows[i].cells[j].setAttribute("oncontextmenu", "false");
         }
     }
     //add the exact amount of bombs requested
@@ -57,6 +80,7 @@ function revealBombs(){
 
 
 function checkClickedCell(cell){
+
     //check if the cell is a bomb
     if (cell.getAttribute("bomb") == "true"){
         revealBombs();
@@ -98,6 +122,7 @@ function checkClickedCell(cell){
     }
     checkWin();
 }
+
 
 
 function checkWin(){

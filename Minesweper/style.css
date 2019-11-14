@@ -73,3 +73,7 @@ h1{
 #grid tbody tr td.clicked{
     background: yellow !important;
 }
+
+.fas.fa-flag{
+  background: none;
+}
